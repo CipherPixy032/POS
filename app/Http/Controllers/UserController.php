@@ -10,22 +10,62 @@ class UserController extends Controller
 {
     public function index()
     {
-        $user = UserModel::create([
-            'username' => 'manager11',
-            'nama' => 'Manager11',
-            'password' => Hash::make('12345'),
-            'level_id' => 9,
+        $user = UserModel::all();
+        return view('user', ['data' => $user]);
+    }
+
+    public function tambah()
+    {
+        return view('user_tambah');
+    }
+
+    public function tambah_simpan(Request $request)
+    {
+        // Tampilkan error jika terjadi kesalahan input
+        $validatedData = $request->validate([
+            'username' => 'required|string|max:50|unique:m_user,username',
+            'nama' => 'required|string|max:100',
+            'password' => 'required|string|min:6',
+            'level_id' => 'required|integer'
         ]);
 
-        $user->username = 'manager12';
+        try {
+            // Simpan data ke database
+            $user = new UserModel();
+            $user->username = $validatedData['username'];
+            $user->nama = $validatedData['nama'];
+            $user->password = Hash::make($validatedData['password']);
+            $user->level_id = $validatedData['level_id'];
+            $user->save(); // Simpan ke database
+
+            return redirect('/user')->with('success', 'User berhasil ditambahkan!');
+        } catch (\Exception $e) {
+            return redirect('/user/tambah')->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+        }
+    }
+    public function ubah($id)
+    {
+        $user = UserModel::find($id);
+        return view('user_ubah', ['data' => $user]);
+    }
+    public function ubah_simpan($id, Request $request)
+    {
+        $user = UserModel::find($id);
+
+        $user->username = $request->username;
+        $user->nama = $request->nama;
+        $user->password = Hash::make($request->password);
+        $user->level_id = $request->level_id;
 
         $user->save();
 
-        $user->wasChanged(); // true
-        $user->wasChanged('username'); // true
-        $user->wasChanged(['username', 'level_id']); // true
-        $user->wasChanged('nama'); // false
+        return redirect('/user')->with('success', 'User berhasil diubah!');
+    }
+    public function hapus($id)
+    {
+        $user = UserModel::find($id);
+        $user->delete();
 
-        dd($user->wasChanged(['nama', 'username'])); // true
+        return redirect('/user');
     }
 }
