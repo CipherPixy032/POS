@@ -2,26 +2,99 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 class BarangSeeder extends Seeder
 {
+    /**
+     * Run the database seeds.
+     */
     public function run(): void
     {
-        $barang = [
-            ['kategori_id' => 1, 'barang_kode' => 'B001', 'barang_nama' => 'Laptop Asus', 'harga_beli' => 5000000, 'harga_jual' => 5500000],
-            ['kategori_id' => 1, 'barang_kode' => 'B002', 'barang_nama' => 'Mouse Wireless', 'harga_beli' => 150000, 'harga_jual' => 200000],
-            ['kategori_id' => 2, 'barang_kode' => 'B003', 'barang_nama' => 'Kemeja Pria', 'harga_beli' => 100000, 'harga_jual' => 150000],
-            ['kategori_id' => 2, 'barang_kode' => 'B004', 'barang_nama' => 'Celana Jeans', 'harga_beli' => 200000, 'harga_jual' => 250000],
-            ['kategori_id' => 3, 'barang_kode' => 'B005', 'barang_nama' => 'Mie Instan', 'harga_beli' => 2500, 'harga_jual' => 3000],
-            ['kategori_id' => 3, 'barang_kode' => 'B006', 'barang_nama' => 'Beras 5kg', 'harga_beli' => 60000, 'harga_jual' => 70000],
-            ['kategori_id' => 4, 'barang_kode' => 'B007', 'barang_nama' => 'Air Mineral 600ml', 'harga_beli' => 3000, 'harga_jual' => 5000],
-            ['kategori_id' => 4, 'barang_kode' => 'B008', 'barang_nama' => 'Susu Kotak', 'harga_beli' => 7000, 'harga_jual' => 9000],
-            ['kategori_id' => 5, 'barang_kode' => 'B009', 'barang_nama' => 'Panci Stainless', 'harga_beli' => 120000, 'harga_jual' => 150000],
-            ['kategori_id' => 5, 'barang_kode' => 'B010', 'barang_nama' => 'Setrika Listrik', 'harga_beli' => 200000, 'harga_jual' => 250000],
+        $data = [
+            [
+                'barang_id' => 1,
+                'kategori_id' => 1,
+                'barang_kode' => 'HP1',
+                'barang_nama' => 'HP Samsung',
+                'harga_beli' => 22000000,
+                'harga_jual' => 24000000,
+            ],
+            [
+                'barang_id' => 2,
+                'kategori_id' => 2,
+                'barang_kode' => 'LP1',
+                'barang_nama' => 'Laptop MSI',
+                'harga_beli' => 23000000,
+                'harga_jual' => 25000000,
+            ],
+            [
+                'barang_id' => 3,
+                'kategori_id' => 3,
+                'barang_kode' => 'MS1',
+                'barang_nama' => 'Mouse Razer',
+                'harga_beli' => 400000,
+                'harga_jual' => 500000,
+            ],
+            [
+                'barang_id' => 4,
+                'kategori_id' => 4,
+                'barang_kode' => 'KB1',
+                'barang_nama' => 'Keyboard Vortex',
+                'harga_beli' => 600000,
+                'harga_jual' => 700000,
+            ],
+            [
+                'barang_id' => 5,
+                'kategori_id' => 5,
+                'barang_kode' => 'PRT1',
+                'barang_nama' => 'Printer Cannon',
+                'harga_beli' => 1400000,
+                'harga_jual' => 1500000,
+            ],
+            [
+                'barang_id' => 6,
+                'kategori_id' => 1,
+                'barang_kode' => 'HP2',
+                'barang_nama' => 'Iphone 16',
+                'harga_beli' => 23000000,
+                'harga_jual' => 25000000,
+            ],
+            [
+                'barang_id' => 7,
+                'kategori_id' => 2,
+                'barang_kode' => 'LP2',
+                'barang_nama' => 'Laptop Dell',
+                'harga_beli' => 12000000,
+                'harga_jual' => 14000000,
+            ],
+            [
+                'barang_id' => 8,
+                'kategori_id' => 3,
+                'barang_kode' => 'MS2',
+                'barang_nama' => 'Mouse Logitech',
+                'harga_beli' => 300000,
+                'harga_jual' => 400000,
+            ],
+            [
+                'barang_id' => 9,
+                'kategori_id' => 4,
+                'barang_kode' => 'KB2',
+                'barang_nama' => 'Keyboard Razer',
+                'harga_beli' => 500000,
+                'harga_jual' => 600000,
+            ],
+            [
+                'barang_id' => 10,
+                'kategori_id' => 5,
+                'barang_kode' => 'PRT2',
+                'barang_nama' => 'Printer HP',
+                'harga_beli' => 2000000,
+                'harga_jual' => 1200000,
+            ],
         ];
-
-        DB::table('m_barang')->insert($barang);
+        DB::table('m_barang')->insert($data);
     }
 }
