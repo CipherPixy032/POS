@@ -63,10 +63,24 @@ role="menu" data-accordion="false">
       <li class="nav-item">
         <a href="{{ url('/penjualan') }}" class="nav-link {{ ($activeMenu == 'sales')?
 'active' : '' }} ">
-          <i class="nav-icon fas fa-cash-register"></i> 
-          <p>Sales Transactions</p> 
+          <i class="nav-icon fas fa-cash-register"></i>
+          <p>Sales Transactions</p>
         </a>
+      </li>
+      <li class="nav-header">Account</li>
+      <li class="nav-item">
+          <a href="{{ route('logout') }}"
+             class="nav-link"
+             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              <i class="nav-icon fas fa-sign-out-alt"></i>
+              <p>Logout</p>
+          </a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              @csrf
+          </form>
       </li>
     </ul>
   </nav>
 </div>
+
+
